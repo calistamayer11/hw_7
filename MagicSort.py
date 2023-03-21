@@ -7,13 +7,13 @@ lst = []
 def linear_scan(lst):
     # identify edge cases: list already sorted, at most 5 items out of place, list reverse sorted
     # return a value for which edge case applies
-    if lst == lst.sort():
+    if lst == sorted(lst):
         return lst
-    elif lst == lst.sort(reverse=True):
+    elif lst == sorted(lst, reverse=True):
         return reverse_list(lst)
     else:
         misplaced = 0
-        for index in range(len(lst)):
+        for index in range(len(lst) - 1):
             if lst[index] < lst[index + 1]:
                 continue
             elif misplaced >= 5:
@@ -40,9 +40,9 @@ def insertionsort(lst):
     n = len(lst)
     for i in range(n):
         j = n - i - 1
-    while j < n - 1 and lst[j] > lst[j + 1]:
-        lst[j], lst[j + 1] = lst[j + 1], lst[j]
-        j += 1
+        while j < n - 1 and lst[j] > lst[j + 1]:
+            lst[j], lst[j + 1] = lst[j + 1], lst[j]
+            j += 1
     return lst
 
     # misplaced = 0

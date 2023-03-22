@@ -12,15 +12,14 @@ from MagicSort import (
 
 class Test_linear_scan(unittest.TestCase):
     def test_linear_scan(self):
-        sorted_list = [1, 2, 3, 4, 5]
         self.lst = [i for i in range(101)]
         self.lst_reversed = [i for i in range(100, 0, -1)]
+
+        # not used??
         self.lst_random = [random.randint(0, 100) for i in range(101)]
         self.lst_2 = [7, -1, 5, 44, -3, 2, -1, 0]
-        # self.lst2[:10] =
 
         self.assertEqual(linear_scan(self.lst), "Sorted")
-        # self.assertEqual(linear_scan(sorted_list), sorted_list)
         self.assertEqual(linear_scan(self.lst_reversed), "Reverse")
         self.assertEqual(linear_scan(self.lst_2), "Insertion Sort")
 
@@ -62,10 +61,34 @@ class Test_mergesort(unittest.TestCase):
         self.lst_2 = [i for i in range(100, 0, -5)]
 
         mergesort(self.lst)
-        self.assertEqual(self.lst, [3, 43, 2, 14, 65, 42, 13])
+        self.assertEqual(self.lst, [2, 3, 13, 14, 42, 43, 65])
 
         mergesort(self.lst_2)
-        self.assertEqual(self.lst_2, 3)
+        self.assertEqual(
+            self.lst_2,
+            [
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                65,
+                70,
+                75,
+                80,
+                85,
+                90,
+                95,
+                100,
+            ],
+        )
 
 
 class Test_magicsort(unittest.TestCase):

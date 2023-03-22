@@ -85,6 +85,7 @@ def insertionsort(lst):
 #         if start < end:
 #             lst[start], lst[end] = lst[end], lst[start]
 
+
 #         if lst[pivot] <= lst[start]:
 #             lst[pivot], lst[start] = lst[start], lst[pivot]
 #             pivot = start
@@ -148,64 +149,31 @@ def quicksort(lst, start=0, end=None, depth=0):
     # if the list iis already sorted by mergesort or insertion sort
     if issorted(lst) == False:
         quicksort(lst, pivot + 1, end, depth)
-    # if start < end:
-    #     # partition the array
-    #     p = partition(lst, start, end)
-    #     # recursively sort elements before partition and after partition
-    #     quicksort(lst, start, p - 1)
-    #     quicksort(lst, p + 1, end)
-
-    # def mergesort(lst):
-    #     "sorts list by dividing and sorting each divded list"
-    #     if len(lst) <= 1:
-    #         return lst
-
-    #     median = len(lst) // 2
-    #     left_side = lst[:median]
-    #     right_side = lst[median:]
-
-    #     mergesort(left_side)
-    #     mergesort(right_side)
-
-    #     i = 0
-    #     j = 0
-
-    #     while i < len(left_side) and j < len(right_side):
-    #         if left_side[i] < right_side[j]:
-    #             lst[i + j] = left_side[i]
-    #             i += 1
-
-    #         else:
-    #             lst[i + j] = right_side[j]
-    #             j += 1
 
 
-def mergesort(array):
-    if len(array) <= 1:
-        return array
-    else:
-        middle = len(array) // 2
-        left = array[:middle]
-        right = array[middle:]
-        left = mergesort(left)
-        right = mergesort(right)
-        return merge(left, right)
+def mergesort(lst):
+    "sorts list by dividing and sorting each divded list"
+    if len(lst) <= 1:
+        return lst
 
+    median = len(lst) // 2
+    left_side = lst[:median]
+    right_side = lst[median:]
 
-def merge(left, right):
-    result = []
+    mergesort(left_side)
+    mergesort(right_side)
+
     i = 0
     j = 0
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            result.append(left[i])
+    while i < len(left_side) and j < len(right_side):
+        if left_side[i] < right_side[j]:
+            lst[i + j] = left_side[i]
             i += 1
+
         else:
-            result.append(right[j])
+            lst[i + j] = right_side[j]
             j += 1
-    result += left[i:]
-    result += right[j:]
-    return result
+    lst[i + j :] = left_side[i:] + right_side[j:]
 
 
 # initializes a global variable to keep track of the algorithms used
@@ -234,3 +202,14 @@ def magic_sort(lst):
         elif tracker == {"quicksort", "insertionsort"}:
             tracker.clear()
             return {"quicksort", "insertionsort"}
+
+
+# if __name__ == "__main__":
+#     unordered = [7, -1, 5, 44, -3, 2, 10, 7, 0, 70, 7]
+#     print(unordered)
+#     mergesort(unordered)
+#     print(unordered)
+
+#     lst_2 = [i for i in range(100, 0, -5)]
+#     lst_2.sort()
+#     print(lst_2)

@@ -118,7 +118,6 @@ def quicksort(lst, start=0, end=None, depth=0):
         end = len(lst)
 
     if end - start <= 16:
-        # lst = insertionsort(lst)
         insertionsort(lst)
         tracker.add("insertionsort")
         if issorted(lst):
@@ -151,30 +150,57 @@ def quicksort(lst, start=0, end=None, depth=0):
     if not issorted(lst):
         quicksort(lst, pivot + 1, end, depth)
 
+    # def mergesort(lst):
+    #     "sorts list by dividing and sorting each divded list"
+    #     if len(lst) <= 1:
+    #         return lst
 
-def mergesort(lst):
-    "sorts list by dividing and sorting each divded list"
-    if len(lst) <= 1:
-        return lst
+    #     median = len(lst) // 2
+    #     left_side = lst[:median]
+    #     right_side = lst[median:]
 
-    median = len(lst) // 2
-    left_side = lst[:median]
-    right_side = lst[median:]
+    #     mergesort(left_side)
+    #     mergesort(right_side)
 
-    mergesort(left_side)
-    mergesort(right_side)
+    #     i = 0
+    #     j = 0
 
+    #     while i < len(left_side) and j < len(right_side):
+    #         if left_side[i] < right_side[j]:
+    #             lst[i + j] = left_side[i]
+    #             i += 1
+
+    #         else:
+    #             lst[i + j] = right_side[j]
+    #             j += 1
+
+
+def mergesort(array):
+    if len(array) <= 1:
+        return array
+    else:
+        middle = len(array) // 2
+        left = array[:middle]
+        right = array[middle:]
+        left = mergesort(left)
+        right = mergesort(right)
+        return merge(left, right)
+
+
+def merge(left, right):
+    result = []
     i = 0
     j = 0
-    while i < len(left_side) and j < len(right_side):
-        if left_side[i] < right_side[j]:
-            lst[i + j] = left_side[i]
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
             i += 1
-
         else:
-            lst[i + j] = right_side[j]
+            result.append(right[j])
             j += 1
-    lst[i + j :] = left_side[i:] + right_side[j:]
+    result += left[i:]
+    result += right[j:]
+    return result
 
 
 # initializes a global variable to keep track of the algorithms used

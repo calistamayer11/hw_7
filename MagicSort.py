@@ -1,7 +1,10 @@
 from math import log2
 
 
-# lst = []
+# initializes a global variable to keep track of the algorithms used
+tracker = set()
+
+
 def issorted(lst):
     return not any(lst[i + 1] < lst[i] for i in range(len(lst) - 1))
 
@@ -133,10 +136,6 @@ def mergesort(lst):
             lst[i + j] = right_side[j]
             j += 1
     lst[i + j :] = left_side[i:] + right_side[j:]
-
-
-# initializes a global variable to keep track of the algorithms used
-tracker = set()
 
 
 def magic_sort(lst):

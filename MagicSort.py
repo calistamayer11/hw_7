@@ -48,63 +48,21 @@ def insertionsort(lst):
             j += 1
     return lst
 
-    # misplaced = 0
-    # for index in range(len(lst)):
-    #     if lst[index] < lst[index + 1]:
-    #         continue
-    #     elif misplaced >= 5:
-    #         break
-    #     else:
-    #         misplaced += 1
 
-
-# def quicksort(lst):
-#     # start = 0
-#     # pivot = len(lst) - 1
-#     # end = pivot - 1
-#     # while start < end:
-#     #     while lst[start] < lst[pivot]:
-#     #         start += 1
-#     #     while start < end and lst[end] >= lst[pivot]:
-#     #         end = -1
-#     #     if start < end:
-#     #         lst[start], lst[end] = lst[end], lst[start]
-
-#     #     if lst[pivot] <= lst[start]:
-#     #         lst[pivot], lst[start] = lst[start], lst[pivot]
-#     #         pivot = start
+# I don't see partition being used anywhere
 # def partition(lst, start, end):
-#     start = 0
-#     pivot = len(lst) - 1
-#     end = pivot - 1
-#     while start < end:
-#         while lst[start] < lst[pivot]:
-#             start += 1
-#         while start < end and lst[end] >= lst[pivot]:
-#             end = -1
-#         if start < end:
-#             lst[start], lst[end] = lst[end], lst[start]
-
-#         if lst[pivot] <= lst[start]:
-#             lst[pivot], lst[start] = lst[start], lst[pivot]
-#             pivot = start
-# if lst[start] > pivot and lst[end] < lst[pivot]:
-#     lst[start], lst[end] = lst[end], lst[start]
-# start = start + 1
-# end = end - 1
-def partition(lst, start, end):
-    pivot = lst[end]  # choose last element as pivot
-    i = start - 1  # index of smaller element
-    for j in range(start, end):
-        # If current element is smaller than or equal to pivot
-        if lst[j] <= pivot:
-            # increment index of smaller element
-            i += 1
-            # swap arr[i] and arr[j]
-            lst[i], lst[j] = lst[j], lst[i]
-    # swap arr[i + 1] and arr[high] (pivot)
-    lst[i + 1], lst[end] = lst[end], lst[i + 1]
-    return i + 1
+#     pivot = lst[end]  # choose last element as pivot
+#     i = start - 1  # index of smaller element
+#     for j in range(start, end):
+#         # If current element is smaller than or equal to pivot
+#         if lst[j] <= pivot:
+#             # increment index of smaller element
+#             i += 1
+#             # swap arr[i] and arr[j]
+#             lst[i], lst[j] = lst[j], lst[i]
+#     # swap arr[i + 1] and arr[high] (pivot)
+#     lst[i + 1], lst[end] = lst[end], lst[i + 1]
+#     return i + 1
 
 
 def quicksort(lst, start=0, end=None, depth=0):

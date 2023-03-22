@@ -1,4 +1,5 @@
 import unittest
+import random
 from MagicSort import (
     linear_scan,
     reverse_list,
@@ -12,6 +13,11 @@ from MagicSort import (
 class Test_linear_scan(unittest.TestCase):
     def test_linear_scan(self):
         sorted_list = [1, 2, 3, 4, 5]
+        self.lst = [i for i in range(101)]
+        self.lst_reversed = [i for i in range(100, 0, -1)]
+        self.lst_random = [random.randint(0, 100) for i in range(101))]
+        self.lst_2 = self.lst[:]
+        self.lst2[:10] = 
         self.assertEqual(linear_scan(sorted_list), sorted_list)
 
 

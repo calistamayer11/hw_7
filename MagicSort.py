@@ -1,17 +1,19 @@
 from math import log2
 
 
-lst = []
+# lst = []
+def issorted(lst):
+    return not any(lst[i + 1] < lst[i] for i in range(len(lst) - 1))
 
 
 def linear_scan(lst):
     # identify edge cases: list already sorted, at most 5 items out of place, list reverse sorted
     # return a value for which edge case applies
     if lst == sorted(lst):
-        return lst, "Sorted"
+        return "Sorted"
 
     elif lst == sorted(lst, reverse=True):
-        return reverse_list(lst), "Reverse"
+        return "Reverse"
     else:
         misplaced = 0
         for index in range(len(lst) - 1):
@@ -23,7 +25,7 @@ def linear_scan(lst):
             else:
                 misplaced += 1
         if misplaced <= 5:
-            return insertionsort(lst), "Insertion Sort"
+            return "Insertion Sort"
 
 
 def reverse_list(lst):
@@ -115,6 +117,12 @@ def quicksort(lst, start=0, end=None, depth=0):
     if end == None:
         end = len(lst)
 
+    if end - start <= 16:
+        insertionsort(lst, start, end)
+        tracker.add("insertionsort")
+        if issorted(lst):
+            return lst
+
     if end - start <= 1:
         return lst
 
@@ -129,25 +137,23 @@ def quicksort(lst, start=0, end=None, depth=0):
         if i < j:
             lst[i], lst[j] = lst[j], lst[i]
             pivot = i
+
+    if lst[i] >= lst[pivot]:
+        lst[i], lst[pivot] = lst[pivot], lst[i]
+        pivot = 1
     # sort the left side of pivot
     quicksort(lst, start, pivot, depth)
     # sort the right side of the pivot
     quicksort(lst, end, pivot, depth)
     # if the list iis already sorted by mergesort or insertion sort
-
-    if start < end:
-        # partition the array
-        p = partition(lst, start, end)
-        # recursively sort elements before partition and after partition
-        quicksort(lst, start, p - 1)
-        quicksort(lst, p + 1, end)
-
-
-# # Example usage:
-# arr = [10, 7, 8, 9, 1, 5]
-# n = len(arr)
-# quicksort(arr, 0, n - 1)
-# print("Sorted array:", arr)
+    if issorted(lst) == False:
+        quicksort(lst, pivot + 1, end, depth)
+    # if start < end:
+    #     # partition the array
+    #     p = partition(lst, start, end)
+    #     # recursively sort elements before partition and after partition
+    #     quicksort(lst, start, p - 1)
+    #     quicksort(lst, p + 1, end)
 
 
 def mergesort(lst):

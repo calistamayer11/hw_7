@@ -118,12 +118,14 @@ def quicksort(lst, start=0, end=None, depth=0):
         end = len(lst)
 
     if end - start <= 16:
-        insertionsort(lst, start, end)
+        # lst = insertionsort(lst)
+        insertionsort(lst)
         tracker.add("insertionsort")
         if issorted(lst):
             return lst
 
     if end - start <= 1:
+        tracker.add("Only 1 item in list")
         return lst
 
     i = start
@@ -146,14 +148,8 @@ def quicksort(lst, start=0, end=None, depth=0):
     # sort the right side of the pivot
     quicksort(lst, end, pivot, depth)
     # if the list iis already sorted by mergesort or insertion sort
-    if issorted(lst) == False:
+    if not issorted(lst):
         quicksort(lst, pivot + 1, end, depth)
-    # if start < end:
-    #     # partition the array
-    #     p = partition(lst, start, end)
-    #     # recursively sort elements before partition and after partition
-    #     quicksort(lst, start, p - 1)
-    #     quicksort(lst, p + 1, end)
 
 
 def mergesort(lst):
@@ -170,7 +166,6 @@ def mergesort(lst):
 
     i = 0
     j = 0
-
     while i < len(left_side) and j < len(right_side):
         if left_side[i] < right_side[j]:
             lst[i + j] = left_side[i]
@@ -179,6 +174,7 @@ def mergesort(lst):
         else:
             lst[i + j] = right_side[j]
             j += 1
+    lst[i + j :] = left_side[i:] + right_side[j:]
 
 
 # initializes a global variable to keep track of the algorithms used
@@ -207,3 +203,10 @@ def magic_sort(lst):
         elif tracker == {"quicksort", "insertionsort"}:
             tracker.clear()
             return {"quicksort", "insertionsort"}
+
+
+if __name__ == "__main__":
+    unordered = [7, -1, 5, 44, -3, 2, 10, 7, 0, 70, 7]
+    print(unordered)
+    mergesort(unordered)
+    print(unordered)

@@ -48,13 +48,14 @@ class Test_insertionsort(unittest.TestCase):
 # def test_insertion(self):
 
 
-# class Test_quicksort(unittest.TestCase):
-#     "test for quicksort"
+class Test_quicksort(unittest.TestCase):
+    "test for quicksort"
 
-#     def test_quicksort(self):
-#         self.lst = [3, 43, 2, 14, 65, 42, 13]
-#         quicksort(self.lst)
-#         self.assertNotEqual(self.lst, 4)
+    def test_quicksort(self):
+        self.lst = [3, 43, 2, 14, 65, 42, 13]
+        # self.lst = quicksort(self.lst)
+        quicksort(self.lst)
+        self.assertNotEqual(self.lst, 4)
 
 
 class Test_mergesort(unittest.TestCase):

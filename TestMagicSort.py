@@ -45,20 +45,27 @@ class Test_insertionsort(unittest.TestCase):
         self.assertEqual(self.lst_2, [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25])
 
 
-# def test_insertion(self):
+class Test_quicksort(unittest.TestCase):
+    "test for quicksort"
 
-
-# class Test_quicksort(unittest.TestCase):
-#     "test for quicksort"
-
-#     def test_quicksort(self):
-#         self.lst = [3, 43, 2, 14, 65, 42, 13]
-#         quicksort(self.lst)
-#         self.assertNotEqual(self.lst, 4)
+    def test_quicksort(self):
+        self.lst = [3, 43, 2, 14, 65, 42, 13]
+        quicksort(self.lst)
+        self.assertEqual(self.lst, [2, 3, 13, 14, 42, 43, 65])
 
 
 class Test_mergesort(unittest.TestCase):
-    pass
+    "test for mergesort"
+
+    def test_mergesort(self):
+        self.lst = [3, 43, 2, 14, 65, 42, 13]
+        self.lst_2 = [i for i in range(100, 0, -5)]
+
+        mergesort(self.lst)
+        self.assertEqual(self.lst, [3, 43, 2, 14, 65, 42, 13])
+
+        mergesort(self.lst_2)
+        self.assertEqual(self.lst_2, 3)
 
 
 class Test_magicsort(unittest.TestCase):

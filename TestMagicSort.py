@@ -11,6 +11,8 @@ from MagicSort import (
 
 
 class Test_linear_scan(unittest.TestCase):
+    "tests linear scan"
+
     def test_linear_scan(self):
         sorted_list = [1, 2, 3, 4, 5]
         self.lst = [i for i in range(101)]
@@ -26,6 +28,8 @@ class Test_linear_scan(unittest.TestCase):
 
 
 class Test_reverse_list(unittest.TestCase):
+    "tests for reverse"
+
     def test_reverse(self):
         random_list = [2, 4, 8, 1, 2]
         reverse_random_list = [2, 1, 8, 4, 2]
@@ -99,7 +103,7 @@ class Test_magicsort(unittest.TestCase):
 
         n = int(1e5)
 
-        self.lst = [(n - i) for i in range(n)]
+        self.lst = [(20 - i) for i in range(20)]
         self.assertEqual(magic_sort(self.lst), {"reverse_list"})
 
         self.lst_2 = [(n - i) for i in range(n)]
@@ -111,10 +115,9 @@ class Test_magicsort(unittest.TestCase):
         self.assertEqual(magic_sort(self.lst_3), {"List is already sorted"})
 
         self.lst_4 = [90, 1, 2, 70, 3, 4, 5, 2, 567, 45, 23, 1, 2, 13, 1, 2, 3, 4, 4]
-
         self.assertEqual(magic_sort(self.lst_4), {"quicksort", "insertionsort"})
 
-        self.lst_5 = [1, 2, 3, 4, 5, 6, 7]
+        self.lst_5 = [1, 3, 2, 6, 4, 9, 10, 11, 12, 13]
         self.assertEqual(magic_sort(self.lst_5), {"insertionsort"})
 
 

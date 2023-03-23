@@ -1,7 +1,6 @@
 from math import log2
 
 
-# lst = []
 def issorted(lst):
     return not any(lst[i + 1] < lst[i] for i in range(len(lst) - 1))
 
@@ -109,14 +108,13 @@ def partition(lst, start, end):
 
 
 def quicksort(lst, start=0, end=None, depth=0):
+    if end == None:
+        end = len(lst)
     depth += 1
     if depth == int(2 * (log2(len(lst)) + 1)):
         mergesort(lst)
         tracker.add("mergesort")
         return lst
-
-    if end == None:
-        end = len(lst)
 
     if end - start <= 16:
         insertionsort(lst)
@@ -130,18 +128,18 @@ def quicksort(lst, start=0, end=None, depth=0):
     i = start
     j = end - 2
     pivot = end - 1
-
     while i < j:
         while lst[i] < lst[pivot]:
+            # j -= 1
+            i += 1
+        while i < j and lst[j] >= lst[pivot]:
             j -= 1
-
         if i < j:
             lst[i], lst[j] = lst[j], lst[i]
-            pivot = i
-
     if lst[i] >= lst[pivot]:
         lst[i], lst[pivot] = lst[pivot], lst[i]
-        pivot = 1
+        # pivot = i
+
     # sort the left side of pivot
     quicksort(lst, start, pivot, depth)
     # sort the right side of the pivot
@@ -204,12 +202,14 @@ def magic_sort(lst):
             return {"quicksort", "insertionsort"}
 
 
-# if __name__ == "__main__":
-#     unordered = [7, -1, 5, 44, -3, 2, 10, 7, 0, 70, 7]
-#     print(unordered)
-#     mergesort(unordered)
-#     print(unordered)
+if __name__ == "__main__":
+    lst_2 = [i for i in range(100, 0, -5)]
+    print(lst_2)
+    quicksort(lst_2)
+    print(lst_2)
 
-#     lst_2 = [i for i in range(100, 0, -5)]
-#     lst_2.sort()
-#     print(lst_2)
+# unordered = [7, -1, 5, 44, -3, 2, 10, 7, 0, 70, 7]
+# print(unordered)
+# # mergesort(unordered)
+# quicksort(unordered)
+# print(unordered)

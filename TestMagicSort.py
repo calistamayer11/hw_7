@@ -45,12 +45,41 @@ class Test_insertionsort(unittest.TestCase):
 
 
 class Test_quicksort(unittest.TestCase):
-    "test for quicksort"
+    "tests for quicksort"
 
     def test_quicksort(self):
         self.lst = [3, 43, 2, 14, 65, 42, 13]
+        self.lst_2 = [i for i in range(100, 0, -5)]
+
         quicksort(self.lst)
         self.assertEqual(self.lst, [2, 3, 13, 14, 42, 43, 65])
+
+        quicksort(self.lst_2)
+        self.assertEqual(
+            self.lst_2,
+            [
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                65,
+                70,
+                75,
+                80,
+                85,
+                90,
+                95,
+                100,
+            ],
+        )
 
 
 class Test_mergesort(unittest.TestCase):

@@ -62,14 +62,60 @@ class Test_mergesort(unittest.TestCase):
         self.lst_2 = [i for i in range(100, 0, -5)]
 
         mergesort(self.lst)
-        self.assertEqual(self.lst, [3, 43, 2, 14, 65, 42, 13])
+        self.assertEqual(self.lst, [2, 3, 13, 14, 42, 43, 65])
 
         mergesort(self.lst_2)
-        self.assertEqual(self.lst_2, 3)
+        self.assertEqual(
+            self.lst_2,
+            [
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                65,
+                70,
+                75,
+                80,
+                85,
+                90,
+                95,
+                100,
+            ],
+        )
 
 
 class Test_magicsort(unittest.TestCase):
-    pass
+    "tests magicsort with all cases"
+
+    def test_magicsort(self):
+
+        n = int(1e5)
+
+        self.lst = [(n - i) for i in range(n)]
+        self.assertEqual(magic_sort(self.lst), {"reverse_list"})
+
+        self.lst_2 = [(n - i) for i in range(n)]
+        self.lst_2[:6] = [-1, -2, -3, -4, -5, -6]
+        self.assertEqual(
+            magic_sort(self.lst_2), {"quicksort", "insertionsort", "mergesort"}
+        )
+        self.lst_3 = [i for i in range(100)]
+        self.assertEqual(magic_sort(self.lst_3), {"List is already sorted"})
+
+        self.lst_4 = [90, 1, 2, 70, 3, 4, 5, 2, 567, 45, 23, 1, 2, 13, 1, 2, 3, 4, 4]
+
+        self.assertEqual(magic_sort(self.lst_4), {"quicksort", "insertionsort"})
+
+        self.lst_5 = [1, 2, 3, 4, 5, 6, 7]
+        self.assertEqual(magic_sort(self.lst_5), {"insertionsort"})
 
 
 unittest.main()
